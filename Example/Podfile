@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RFModule_Example' do
+  pod 'RFModule', :path => '../'
+
+  target 'RFModule_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

@@ -11,8 +11,10 @@ import Foundation
 @objc
 public class RFModuleHandler: NSObject, RFModule, RFModuleHandling {
 
+    @objc
     public var view: UIViewController?
 
+    @objc
     public var transition: RFModuleTransitioning? {
         get {
             return self.view?.rf_transition
@@ -21,7 +23,8 @@ public class RFModuleHandler: NSObject, RFModule, RFModuleHandling {
             self.view?.rf_transition = newValue
         }
     }
-    
+
+    @objc
     public var appearance: AnyObject? {
         get {
             return self.view?.rf_appearance
@@ -31,14 +34,17 @@ public class RFModuleHandler: NSObject, RFModule, RFModuleHandling {
         }
     }
 
+    @objc
     public weak var input: AnyObject?
 
+    @objc
     public weak var output: AnyObject? {
         didSet{
             setModuleOutput?(output)
         }
     }
 
+    @objc
     public var setModuleOutput: ((AnyObject?) -> Void)?
 
 }

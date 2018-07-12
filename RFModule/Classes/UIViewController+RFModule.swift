@@ -49,7 +49,7 @@ public extension UIViewController {
 extension UIViewController: RFAppearanceConfigurable {
     @objc public var rf_appearance: AnyObject? {
         get {
-            return objc_getAssociatedObject(self, &RFModuleUIViewController.kAppearance) as? AnyObject
+            return objc_getAssociatedObject(self, &RFModuleUIViewController.kAppearance) as AnyObject
         }
         set {
             objc_setAssociatedObject(self, &RFModuleUIViewController.kAppearance, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)

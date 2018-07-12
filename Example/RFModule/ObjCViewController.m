@@ -32,8 +32,6 @@
     _destination = destination;
 }
 
-@synthesize context;
-
 - (void)performAnimated:(BOOL)animated completion:(void (^ _Nullable)(void))completion {
     [self.source presentViewController:self.destination animated:animated completion:^{
         //
@@ -95,13 +93,15 @@
 
     id <RFModule> module = [self.moduleBridge bridge:[RFTestMVCModuleViewController new]];
     module.output = self;
-    module.transition = [RFTransition new];
+    RFTransition *transition = [RFTransition new];
 
     id <RFModule> swiftModule = [self.moduleBridge bridge:[ViewController new]];
     swiftModule.output = self;
 
-    module.transition.destination = module.view;
-    module.transition.source = self;
+    transition.destination = module.view;
+    transition.source = self;
+    
+    module.transition = transition;
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [module.transition performAnimated:YES completion:nil];

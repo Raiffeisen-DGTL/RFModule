@@ -15,17 +15,14 @@ public class RFModuleFactoryImplementation: NSObject, RFModuleFactory, RFModuleB
 
     public func module(storyboard: UIStoryboard?) -> RFModule? {
         fatalError("needs implementation")
-        return nil
     }
 
     public func module(storyboard: UIStoryboard?, identifier: String?) -> RFModule? {
         fatalError("needs implementation")
-        return nil
     }
 
     public func module(factory: Any?, selector: Selector) -> RFModule? {
         fatalError("needs implementation")
-        return nil
     }
 
     public func module(viewController: UIViewController?) -> RFModule? {

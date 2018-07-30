@@ -12,7 +12,7 @@ import RFModule
 public class RFModuleHelper: NSObject {
     
     @objc(configureHandler:withInstance:)
-    public static func configure(_ handler: RFModuleHandling, instance: AnyObject) -> Bool {
+    public static func configure(_ handler: ModuleHandling, instance: AnyObject) -> Bool {
         if isViper(instance) {
             handler.view = self.getViperViewFromInstance(instance)
             handler.input = self.getViperPresenterFromInstance(instance)

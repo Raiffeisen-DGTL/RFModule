@@ -9,6 +9,6 @@ import Foundation
 
 
 @objc
-public protocol RFAppearanceConfigurable: NSObjectProtocol {
+public protocol AppearanceConfigurable: NSObjectProtocol {
     var rf_appearance: AnyObject? { get set }
 }

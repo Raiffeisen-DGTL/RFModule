@@ -18,9 +18,9 @@ struct RFModuleUIViewController {
 @objc
 public extension UIViewController {
 
-    @objc public var rf_transition: RFModuleTransitioning? {
+    @objc public var rf_transition: ModuleTransitioning? {
         get {
-            return objc_getAssociatedObject(self, &RFModuleUIViewController.kTransition) as? RFModuleTransitioning
+            return objc_getAssociatedObject(self, &RFModuleUIViewController.kTransition) as? ModuleTransitioning
         }
         set {
             objc_setAssociatedObject(self, &RFModuleUIViewController.kTransition, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
@@ -34,10 +34,10 @@ public extension UIViewController {
         }
     }
 
-    @objc public var rf_moduleFactory: (RFModuleBridge & RFModuleFactory)? {
+    @objc public var rf_moduleFactory: (ModuleBridge & ModuleFactory)? {
         get {
             let box = objc_getAssociatedObject(self, &RFModuleUIViewController.kFactory) as? WeakBox
-            return box?.value as? (RFModuleBridge & RFModuleFactory)
+            return box?.value as? (ModuleBridge & ModuleFactory)
         }
         set {
             objc_setAssociatedObject(self, &RFModuleUIViewController.kFactory, WeakBox(newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
@@ -46,7 +46,7 @@ public extension UIViewController {
 }
 
 @objc
-extension UIViewController: RFAppearanceConfigurable {
+extension UIViewController: AppearanceConfigurable {
     @objc public var rf_appearance: AnyObject? {
         get {
             return objc_getAssociatedObject(self, &RFModuleUIViewController.kAppearance) as AnyObject

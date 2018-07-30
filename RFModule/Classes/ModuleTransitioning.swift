@@ -1,5 +1,5 @@
 //
-//  RFModuleTransitioning.swift
+//  ModuleTransitioning.swift
 //  Pods-RFModule_Example
 //
 //  Created by RFMacBook on 17.03.2018.
@@ -8,9 +8,9 @@
 import Foundation
 
 @objc
-public protocol RFModuleTransitioning: AnyObject {
+public protocol ModuleTransitioning: AnyObject {
 
-    weak var destination: (UIViewController & RFAppearanceConfigurable)? { get set }
+    weak var destination: (UIViewController & AppearanceConfigurable)? { get set }
 
     @objc(performAnimated:completion:)
     func perform(animated: Bool, completion: (() -> Void)?)

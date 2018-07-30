@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    lazy var moduleFactory:RFModuleBridge = {
+    lazy var moduleFactory:ModuleBridge = {
         [unowned self] in
-        return RFModuleFactoryImplementation()
+        return ModuleFactoryImplementation()
     }()
 
 

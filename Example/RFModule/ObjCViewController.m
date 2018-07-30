@@ -15,7 +15,7 @@
 
 
 
-@interface RFTransition : NSObject <RFModuleTransitioning>
+@interface RFTransition : NSObject <ModuleTransitioning>
 
 @property (nonatomic, weak) UIViewController *source;
 @property (nonatomic, weak) UIViewController *destination;
@@ -49,15 +49,15 @@
 
 @interface ObjCViewController ()
 
-@property (nonatomic, strong) id <RFModuleBridge> moduleBridge;
+@property (nonatomic, strong) id <ModuleBridge> moduleBridge;
 
 @end
 
 @implementation ObjCViewController
 
-- (id<RFModuleBridge>)moduleBridge {
+- (id<ModuleBridge>)moduleBridge {
     if (!_moduleBridge) {
-        _moduleBridge = [RFModuleFactoryImplementation new];
+        _moduleBridge = [ModuleFactoryImplementation new];
     }
     return _moduleBridge;
 }
@@ -69,7 +69,7 @@
 
     self.view.backgroundColor = [UIColor greenColor];
 
-    [self.moduleBridge registerDefinition:^BOOL(id instance, id<RFModuleHandling> handler) {
+    [self.moduleBridge registerDefinition:^BOOL(id instance, id<ModuleHandling> handler) {
         if ([RFModuleHelper configureHandler:handler withInstance:instance]) {
             return YES;
         }
@@ -91,11 +91,11 @@
         return NO;
     }];
 
-    id <RFModule> module = [self.moduleBridge bridge:[RFTestMVCModuleViewController new]];
+    id <Module> module = [self.moduleBridge bridge:[RFTestMVCModuleViewController new]];
     module.output = self;
-    RFTransition *transition = [RFTransition new];
+    DefaultPresentTransition *transition = [DefaultPresentTransition new];
 
-    id <RFModule> swiftModule = [self.moduleBridge bridge:[ViewController new]];
+    id <Module> swiftModule = [self.moduleBridge bridge:[ViewController new]];
     swiftModule.output = self;
 
     transition.destination = module.view;

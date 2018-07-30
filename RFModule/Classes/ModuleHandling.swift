@@ -8,7 +8,7 @@
 import Foundation
 
 @objc
-public protocol RFModuleHandling: NSObjectProtocol {
+public protocol ModuleHandling: NSObjectProtocol {
     
     var view: UIViewController? { get set }
     weak var input: AnyObject? { get set }

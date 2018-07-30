@@ -1,5 +1,5 @@
 //
-//  RFModuleHandler.swift
+//  ModuleHandler.swift
 //  Pods-RFModule_Example
 //
 //  Created by RFMacBook on 17.03.2018.
@@ -9,13 +9,13 @@ import Foundation
 
 
 @objc
-public class RFModuleHandler: NSObject, RFModule, RFModuleHandling {
+public class ModuleHandler: NSObject, Module, ModuleHandling {
 
     @objc
     public var view: UIViewController?
 
     @objc
-    public var transition: RFModuleTransitioning? {
+    public var transition: ModuleTransitioning? {
         get {
             return self.view?.rf_transition
         }

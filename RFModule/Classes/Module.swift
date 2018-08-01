@@ -9,14 +9,22 @@ import Foundation
 import UIKit
 
 @objc
-public protocol Module: NSObjectProtocol {
-
+public protocol RFModule: class {
+    
     var view: UIViewController? { get }
-
+    
     var transition: ModuleTransitioning? { get set }
     var appearance: AnyObject? { get set }
-
-    weak var input: AnyObject? { get }
-    weak var output: AnyObject? { get set }
     
+    var inputObjc: AnyObject? { get }
+    var outputObjc: AnyObject? { get set }
+    
+}
+
+
+public extension RFModule {
+    
+    public var input: AnyObject? { return inputObjc }
+    
+    public var output: AnyObject? { get { return outputObjc } set { outputObjc = newValue} }
 }

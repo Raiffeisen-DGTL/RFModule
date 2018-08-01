@@ -10,12 +10,12 @@ import Foundation
 @objc
 public protocol ModuleFactory: NSObjectProtocol {
 
-    func module(storyboard: UIStoryboard?) -> Module?
+    func module(storyboard: UIStoryboard?) -> RFModule?
 
-    func module(storyboard: UIStoryboard?, identifier: String) -> Module?
+    func module(storyboard: UIStoryboard?, identifier: String) -> RFModule?
 
-    func module(factory: Any?, selector: Selector) -> Module?
+    func module(factory: Any?, selector: Selector) -> RFModule?
 
-    func module(viewController: UIViewController?) -> Module?
+    func module(viewController: UIViewController?) -> RFModule?
 
 }

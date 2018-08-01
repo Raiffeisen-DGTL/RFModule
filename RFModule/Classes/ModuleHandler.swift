@@ -9,7 +9,7 @@ import Foundation
 
 
 @objc
-public class ModuleHandler: NSObject, Module, ModuleHandling {
+public class ModuleHandler: NSObject, RFModule, RFModuleHandling {
 
     @objc
     public var view: UIViewController?
@@ -35,10 +35,10 @@ public class ModuleHandler: NSObject, Module, ModuleHandling {
     }
 
     @objc
-    public weak var input: AnyObject?
+    public weak var inputObjc: AnyObject?
 
     @objc
-    public weak var output: AnyObject? {
+    public weak var outputObjc: AnyObject? {
         didSet{
             setModuleOutput?(output)
         }
@@ -49,3 +49,50 @@ public class ModuleHandler: NSObject, Module, ModuleHandling {
 
 }
 
+public class Module<I: AnyObject, O: AnyObject>: RFModule, ModuleHandling {
+    public typealias Input = I
+    public typealias Output = O
+    
+    
+    public var input: I? { get { return inputObjc as? I} set { inputObjc = newValue }}
+    public var output: O? { get { return outputObjc as? O} set { outputObjc = newValue }}
+    
+    @objc(input)
+    public weak var inputObjc: AnyObject?
+    @objc(output)
+    public weak var outputObjc: AnyObject? {
+        didSet{
+            setModuleOutput?(output)
+        }
+    }
+    
+    public var setModuleOutput: ((O?) -> Void)?
+    
+    
+    public var view: UIViewController?
+    
+    
+    public var transition: ModuleTransitioning? {
+        get {
+            return self.view?.rf_transition
+        }
+        set {
+            self.view?.rf_transition = newValue
+        }
+    }
+    
+    public init(view: UIViewController, input: I, setModuleOutput: ((O?) -> Void)?) {
+        self.view = view
+        self.input = input
+        self.setModuleOutput = setModuleOutput
+    }
+    
+    public var appearance: AnyObject? {
+        get {
+            return self.view?.rf_appearance
+        }
+        set {
+            self.view?.rf_appearance = newValue
+        }
+    }
+}

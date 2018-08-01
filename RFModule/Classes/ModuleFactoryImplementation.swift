@@ -13,34 +13,34 @@ public class ModuleFactoryImplementation: NSObject, ModuleFactory, ModuleBridge 
 
     // MARK: Factory
 
-    public func module(storyboard: UIStoryboard?) -> Module? {
+    public func module(storyboard: UIStoryboard?) -> RFModule? {
         let viewController = storyboard?.instantiateInitialViewController()
         return self.bridge(viewController)
     }
 
-    public func module(storyboard: UIStoryboard?, identifier: String) -> Module? {
+    public func module(storyboard: UIStoryboard?, identifier: String) -> RFModule? {
         let viewController = storyboard?.instantiateViewController(withIdentifier: identifier)
         return self.bridge(viewController)
     }
 
-    public func module(factory: Any?, selector: Selector) -> Module? {
+    public func module(factory: Any?, selector: Selector) -> RFModule? {
         fatalError("needs implementation")
     }
 
-    public func module(viewController: UIViewController?) -> Module? {
+    public func module(viewController: UIViewController?) -> RFModule? {
         return self.bridge(viewController)
     }
 
     // MARK: Bridge
 
-    private var definitions = Array<(AnyObject, ModuleHandling) -> Bool>()
+    private var definitions = Array<(AnyObject, RFModuleHandling) -> Bool>()
 
-    public func bridge(_ instance: AnyObject?) -> Module? {
-        var module:Module? = nil
+    public func bridge(_ instance: AnyObject?) -> RFModule? {
+        var module:RFModule? = nil
 
         if let object = instance {
-            if object is Module {
-                module = object as? Module
+            if object is RFModule {
+                module = object as? RFModule
             }
             else {
                 let handler = ModuleHandler();
@@ -57,7 +57,7 @@ public class ModuleFactoryImplementation: NSObject, ModuleFactory, ModuleBridge 
         return module;
     }
 
-    public func register(definition: @escaping (AnyObject, ModuleHandling) -> Bool) {
+    public func register(definition: @escaping (AnyObject, RFModuleHandling) -> Bool) {
         definitions.append(definition)
     }
 

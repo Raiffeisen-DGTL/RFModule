@@ -69,7 +69,7 @@
 
     self.view.backgroundColor = [UIColor greenColor];
 
-    [self.moduleBridge registerDefinition:^BOOL(id instance, id<ModuleHandling> handler) {
+    [self.moduleBridge registerDefinition:^BOOL(id instance, id<RFModuleHandling> handler) {
         if ([RFModuleHelper configureHandler:handler withInstance:instance]) {
             return YES;
         }
@@ -91,12 +91,12 @@
         return NO;
     }];
 
-    id <Module> module = [self.moduleBridge bridge:[RFTestMVCModuleViewController new]];
-    module.output = self;
+    id <RFModule> module = [self.moduleBridge bridge:[RFTestMVCModuleViewController new]];
+    module.outputObjc = self;
     DefaultPresentTransition *transition = [DefaultPresentTransition new];
 
-    id <Module> swiftModule = [self.moduleBridge bridge:[ViewController new]];
-    swiftModule.output = self;
+    id <RFModule> swiftModule = [self.moduleBridge bridge:[ViewController new]];
+    swiftModule.outputObjc = self;
 
     transition.destination = module.view;
     transition.source = self;

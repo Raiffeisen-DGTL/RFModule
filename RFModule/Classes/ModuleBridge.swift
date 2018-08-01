@@ -10,9 +10,9 @@ import Foundation
 @objc
 public protocol ModuleBridge: NSObjectProtocol {
 
-    func bridge(_ instance: AnyObject?) -> Module?
+    func bridge(_ instance: AnyObject?) -> RFModule?
 
     @objc(registerDefinition:)
-    func register(definition: @escaping (_ instance: AnyObject, _ handler: ModuleHandling) -> Bool) -> Void
+    func register(definition: @escaping (_ instance: AnyObject, _ handler: RFModuleHandling) -> Bool) -> Void
 
 }

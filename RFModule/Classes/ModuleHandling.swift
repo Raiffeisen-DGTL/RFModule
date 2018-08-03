@@ -12,6 +12,7 @@ import UIKit
 public protocol RFModuleHandling: NSObjectProtocol {
     
     var view: UIViewController? { get set }
+    @objc(input)
     weak var inputObjc: AnyObject? { get set }
     
     var setModuleOutput: ((_ moduleOutput: AnyObject?) -> Void)? { get set }

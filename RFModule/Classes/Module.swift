@@ -16,7 +16,9 @@ public protocol RFModule: class {
     var transition: ModuleTransitioning? { get set }
     var appearance: AnyObject? { get set }
     
+    @objc(input)
     var inputObjc: AnyObject? { get }
+    @objc(output)
     var outputObjc: AnyObject? { get set }
     
 }

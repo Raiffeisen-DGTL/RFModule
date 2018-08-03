@@ -34,10 +34,10 @@ public class ModuleHandler: NSObject, RFModule, RFModuleHandling {
         }
     }
 
-    @objc
+    @objc(input)
     public weak var inputObjc: AnyObject?
 
-    @objc
+    @objc(output)
     public weak var outputObjc: AnyObject? {
         didSet{
             setModuleOutput?(output)

@@ -92,11 +92,11 @@
     }];
 
     id <RFModule> module = [self.moduleBridge bridge:[RFTestMVCModuleViewController new]];
-    module.outputObjc = self;
+    module.output = self;
     DefaultPresentTransition *transition = [DefaultPresentTransition new];
 
     id <RFModule> swiftModule = [self.moduleBridge bridge:[ViewController new]];
-    swiftModule.outputObjc = self;
+    swiftModule.output = self;
 
     transition.destination = module.view;
     transition.source = self;

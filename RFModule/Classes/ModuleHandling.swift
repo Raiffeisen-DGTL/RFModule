@@ -6,13 +6,31 @@
 //
 
 import Foundation
+import UIKit
 
 @objc
-public protocol ModuleHandling: NSObjectProtocol {
+public protocol RFModuleHandling: NSObjectProtocol {
     
     var view: UIViewController? { get set }
-    weak var input: AnyObject? { get set }
+    @objc(input)
+    weak var inputObjc: AnyObject? { get set }
     
     var setModuleOutput: ((_ moduleOutput: AnyObject?) -> Void)? { get set }
+    
+}
+
+public extension RFModuleHandling {
+    public var input: AnyObject? { get { return inputObjc } set { inputObjc = newValue} }
+}
+
+
+public protocol ModuleHandling: class {
+    associatedtype Input
+    associatedtype Output
+    
+    var view: UIViewController? { get set }
+    var input: Input? { get set }
+    
+    var setModuleOutput: ((_ moduleOutput: Output?) -> Void)? { get set }
     
 }

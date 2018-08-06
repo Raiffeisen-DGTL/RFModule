@@ -49,13 +49,13 @@ public class ModuleHandler: NSObject, RFModule, RFModuleHandling {
 
 }
 
-public class Module<I: AnyObject, O: AnyObject>: RFModule, ModuleHandling {
+public class Module<I: Any, O: Any>: RFModule, ModuleHandling {
     public typealias Input = I
     public typealias Output = O
     
     
-    public var input: I? { get { return inputObjc as? I} set { inputObjc = newValue }}
-    public var output: O? { get { return outputObjc as? O} set { outputObjc = newValue }}
+    public var input: I? { get { return inputObjc as? I} set { inputObjc = newValue as AnyObject }}
+    public var output: O? { get { return outputObjc as? O} set { outputObjc = newValue as AnyObject }}
     
     @objc(input)
     public weak var inputObjc: AnyObject?

@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc
+@objc(RFModuleBridge)
 public protocol ModuleBridge: NSObjectProtocol {
 
     func bridge(_ instance: AnyObject?) -> RFModule?

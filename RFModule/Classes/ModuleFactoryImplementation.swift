@@ -8,7 +8,7 @@
 import Foundation
 
 
-@objc
+@objc(RFModuleFactoryImplementation)
 public class ModuleFactoryImplementation: NSObject, ModuleFactory, ModuleBridge {
 
     // MARK: Factory

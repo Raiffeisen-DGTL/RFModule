@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc
+@objc(RFModuleFactory)
 public protocol ModuleFactory: NSObjectProtocol {
 
     func module(storyboard: UIStoryboard?) -> RFModule?

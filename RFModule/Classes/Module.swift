@@ -18,7 +18,7 @@ public protocol RFModule: class {
     
     @objc(input)
     var inputObjc: AnyObject? { get }
-    @objc(output)
+    @objc(moduleOutput)
     var outputObjc: AnyObject? { get set }
     
 }

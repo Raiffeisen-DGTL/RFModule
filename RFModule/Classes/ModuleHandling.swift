@@ -15,6 +15,7 @@ public protocol RFModuleHandling: NSObjectProtocol {
     @objc(input)
     weak var inputObjc: AnyObject? { get set }
     
+    @objc(moduleOutputBlock)
     var setModuleOutput: ((_ moduleOutput: AnyObject?) -> Void)? { get set }
     
 }

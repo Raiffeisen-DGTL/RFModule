@@ -37,14 +37,14 @@ public class ModuleHandler: NSObject, RFModule, RFModuleHandling {
     @objc(input)
     public weak var inputObjc: AnyObject?
 
-    @objc(output)
+    @objc(moduleOutput)
     public weak var outputObjc: AnyObject? {
         didSet{
             setModuleOutput?(output)
         }
     }
 
-    @objc
+    @objc(moduleOutputBlock)
     public var setModuleOutput: ((AnyObject?) -> Void)?
 
 }
@@ -59,7 +59,7 @@ public class Module<I: Any, O: Any>: RFModule, ModuleHandling {
     
     @objc(input)
     public weak var inputObjc: AnyObject?
-    @objc(output)
+    @objc(moduleOutput)
     public weak var outputObjc: AnyObject? {
         didSet{
             setModuleOutput?(output)

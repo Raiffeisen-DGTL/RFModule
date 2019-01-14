@@ -49,7 +49,7 @@ public class ModuleHandler: NSObject, RFModule, RFModuleHandling {
 
 }
 
-public class Module<I: Any, O: Any>: RFModule, ModuleHandling {
+public class Module<I: Any, O: Any>: NSObject, RFModule, ModuleHandling {
     public typealias Input = I
     public typealias Output = O
     
@@ -82,6 +82,7 @@ public class Module<I: Any, O: Any>: RFModule, ModuleHandling {
     }
     
     public init(view: UIViewController, input: I, setModuleOutput: ((O?) -> Void)?) {
+        super.init()
         self.view = view
         self.input = input
         self.setModuleOutput = setModuleOutput

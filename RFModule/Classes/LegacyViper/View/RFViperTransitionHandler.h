@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "RFViperModuleView.h"
+#import "RFViperModuleInput.h"
 @protocol RFModule;
 
 
@@ -25,6 +26,8 @@ typedef void (^RFModuleConfigurationBlock)(id moduleInput);
 @class RFCollectionViewDataDisplayManager;
 
 @protocol RFViperTransitionHandler
+// Module input object
+@property (nonatomic, strong) id<RFViperModuleInput> moduleInput;
 // Method removes/closes module
 - (void)closeCurrentModule:(BOOL)animated;
 @optional

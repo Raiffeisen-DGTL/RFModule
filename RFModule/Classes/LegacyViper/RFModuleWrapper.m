@@ -10,6 +10,7 @@
 #import "RFModuleWrapper.h"
 #import "RFViperTransitionHandler.h"
 #import "RFViperModule.h"
+#import <RFModule/RFModule-Swift.h>
 
 @import Utils;
 

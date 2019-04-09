@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ViperMcFlurry/ViperMcFlurry.h>
 #import "RFViperModuleView.h"
-#import "RFTabTransitionDirection.h"
+@protocol RFModule;
+
 
 extern NSTimeInterval const RFTabTransitionDuration;
 
@@ -24,8 +24,9 @@ typedef void (^RFModuleConfigurationBlock)(id moduleInput);
 
 @class RFCollectionViewDataDisplayManager;
 
-@protocol RFViperTransitionHandler <RamblerViperModuleTransitionHandlerProtocol>
-
+@protocol RFViperTransitionHandler
+// Method removes/closes module
+- (void)closeCurrentModule:(BOOL)animated;
 @optional
 
 /**
@@ -64,7 +65,7 @@ typedef void (^RFModuleConfigurationBlock)(id moduleInput);
 
 - (id <RFViperModule>) presentTabModule:(id<RFModule>)module
                           containerView:(UIView *)containerView
-                              direction:(RFTabTransitionDirection)direction
+                              direction:(NSUInteger)direction
                          configureBlock:(RFModuleConfigurationBlock)configureBlock;
 
 

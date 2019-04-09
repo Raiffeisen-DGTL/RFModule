@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@import RFModule;
+@protocol RFModule;
 
 @protocol RFViperModuleView;
 

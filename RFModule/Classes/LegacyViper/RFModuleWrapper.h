@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RFViperModule.h"
+#import "RFViperModuleView.h"
 
-@import RFModule;
-
+@protocol RFModule;
 @protocol RFViperTransitionHandler;
 
 @interface RFModuleWrapper : NSProxy <RFViperModule>

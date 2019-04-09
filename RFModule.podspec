@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RFModule'
-  s.version          = '0.1.6'
+  s.version          = '0.1.8'
   s.summary          = 'Meaningful short summary description of RFModule.'
 
 # This description is used to generate tags and improve search results.
@@ -38,7 +38,7 @@ TODO: Meaningful long long summary description of RFModule.
   #   'RFModule' => ['RFModule/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+  s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

@@ -7,16 +7,14 @@
 
 import Foundation
 
-fileprivate
-struct RFModuleUIViewController {
+private struct RFModuleUIViewController {
     // Key for objc associated objects.
     @nonobjc static var kTransition = "ru.kModuleTransition"
-    @nonobjc static var kFactory = "ru.kModuleFactory"
     @nonobjc static var kAppearance = "ru.kAppearance"
 }
 
 @objc
-public extension UIViewController {
+extension UIViewController {
 
     @objc public var rf_transition: ModuleTransitioning? {
         get {
@@ -34,15 +32,6 @@ public extension UIViewController {
         }
     }
 
-    @objc public var rf_moduleFactory: (ModuleBridge & ModuleFactory)? {
-        get {
-            let box = objc_getAssociatedObject(self, &RFModuleUIViewController.kFactory) as? WeakBox
-            return box?.value as? (ModuleBridge & ModuleFactory)
-        }
-        set {
-            objc_setAssociatedObject(self, &RFModuleUIViewController.kFactory, WeakBox(newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-        }
-    }
 }
 
 @objc

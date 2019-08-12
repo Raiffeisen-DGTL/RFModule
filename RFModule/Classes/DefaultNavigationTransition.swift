@@ -22,15 +22,12 @@ public class DefaultNavigationTransition: NSObject, ModuleTransitioning {
     public weak var navigation: UINavigationController?
 
     // MARK: - Transition Action
-
     public func perform(animated: Bool, completion: (() -> Void)?) {
         guard let destination = self.destination else { return }
-
+        self.navigation?.pushViewController(destination, animated: animated)
         self.navigation?.transitionCoordinator?.animate(alongsideTransition: nil, completion: { _ in
             completion?()
         })
-        self.navigation?.pushViewController(destination, animated: animated)
-
     }
 
     public func reverse(animated: Bool, completion: (() -> Void)?) {
@@ -41,5 +38,4 @@ public class DefaultNavigationTransition: NSObject, ModuleTransitioning {
         })
         self.navigation?.popViewController(animated: animated)
     }
-
 }

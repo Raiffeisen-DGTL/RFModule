@@ -14,32 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    lazy var moduleFactory:ModuleBridge = {
-        [unowned self] in
-        return ModuleFactoryImplementation()
-    }()
-
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        self.moduleFactory.register { (instance, handler) -> Bool in
-            if  instance is UIViewController {
-                handler.view = instance as? UIViewController
-                handler.input = instance
-                return true
-            }
-//            if (instance is RFTestMVCModuleViewController) {
-//                handler.setModuleOutput = { output in
-//                    (instance as! RFTestMVCModuleViewController).delegate = output
-//                    }
-//            }
-            return false
-        }
+        let window = UIWindow()
+        window.rootViewController = ViewController()
+        window.isHidden = false
+        window.makeKeyAndVisible()
+        self.window = window
+        
+        let vc = ObjCViewController()
+        let module = Module<Any, AnyObject>(view: vc, input: vc)
 
-        let module = self.moduleFactory.bridge(ObjCViewController())
-
-        if let vc = module?.view {
+        if let vc = module.view {
             let deadlineTime = DispatchTime.now() + .seconds(2)
             DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
                 self.window?.rootViewController?.present(vc, animated: true, completion: {

@@ -49,19 +49,9 @@
 
 @interface ObjCViewController ()
 
-@property (nonatomic, strong) id <ModuleBridge> moduleBridge;
-
 @end
 
 @implementation ObjCViewController
-
-- (id<ModuleBridge>)moduleBridge {
-    if (!_moduleBridge) {
-        _moduleBridge = [ModuleFactoryImplementation new];
-    }
-    return _moduleBridge;
-}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,43 +59,30 @@
 
     self.view.backgroundColor = [UIColor greenColor];
 
-    [self.moduleBridge registerDefinition:^BOOL(id instance, id<RFModuleHandling> handler) {
-        if ([RFModuleHelper configureHandler:handler withInstance:instance]) {
-            return YES;
-        }
 
-        if ([instance isKindOfClass:[ViewController class]]) {
-            handler.setModuleOutput = ^(id output) {
-                [(ViewController *)instance setDelegate:output];
-            };
-            return YES;
-        }
-
-        if ([instance isKindOfClass:[RFTestMVCModuleViewController class]]) {
-            handler.setModuleOutput = ^(id output) {
-                [(RFTestMVCModuleViewController *) instance setDelegate:output];
-            };
-            return YES;
-        }
-        
-        return NO;
-    }];
-
-    id <RFModule> module = [self.moduleBridge bridge:[RFTestMVCModuleViewController new]];
-    module.output = self;
+    RFTestMVCModuleViewController *objcVC = [RFTestMVCModuleViewController new];
+    ViewController *swiftVC = [ViewController new];
+    
+    
+    id <RFModule> objcModule = [[ModuleHandler alloc] initWithView:objcVC input:objcVC output:nil];
+    
+    objcModule.moduleOutput = self;
     DefaultPresentTransition *transition = [DefaultPresentTransition new];
 
-    id <RFModule> swiftModule = [self.moduleBridge bridge:[ViewController new]];
-    swiftModule.output = self;
+    id <RFModule> swiftModule = [[ModuleHandler alloc] initWithView:swiftVC input:swiftVC output:nil];
+    swiftModule.moduleOutput = self;
 
-    transition.destination = module.view;
+    transition.destination = objcModule.view;
     transition.source = self;
-    
-    module.transition = transition;
+    objcModule.transition = transition;
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [module.transition performAnimated:YES completion:nil];
+        [objcModule.transition performAnimated:YES completion:nil];
     });
+
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [swiftModule.transition performAnimated:YES completion:nil];
+//    });
 
 }
 

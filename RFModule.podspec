@@ -8,11 +8,14 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RFModule'
-  s.version          = '0.1.10'
-  s.summary          = 'Meaningful short summary description of RFModule.'
+  s.version          = '0.2.0'
+  s.summary          = 'RFModule framework that helps to build independent modules'
 
   s.description      = <<-DESC
-TODO: Meaningful long long summary description of RFModule.
+RFModule framework that helps to build independent modules.
+It is simple protocol with input, output and transitioning.
+All you need is create ModuleHandler and set its input and output.
+more info - https://habr.com/ru/company/raiffeisenbank/blog/448206/
                        DESC
 
   s.homepage         = 'https://www.raiffeisen.ru/'
@@ -21,11 +24,11 @@ TODO: Meaningful long long summary description of RFModule.
   s.source           = { :git => 'https://bitbucket.raiffeisen.ru/scm/rios/rfmodule.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.3'
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
-  s.swift_version = '4.0'
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
+  s.swift_version = '5.0'
 
   s.source_files = 'RFModule/Classes/**/*'
 
-  s.public_header_files = 'Pod/Classes/**/*.h'
+  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
 end

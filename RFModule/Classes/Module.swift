@@ -26,7 +26,7 @@ public protocol RFModule: class {
 
 public extension RFModule {
     
-    public var input: AnyObject? { return inputObjc }
+    var input: AnyObject? { return inputObjc }
     
-    public var output: AnyObject? { get { return outputObjc } set { outputObjc = newValue} }
+    var output: AnyObject? { get { return outputObjc } set { outputObjc = newValue} }
 }

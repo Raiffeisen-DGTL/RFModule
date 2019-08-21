@@ -46,7 +46,13 @@ public class ModuleHandler: NSObject, RFModule, RFModuleHandling {
 
     @objc(moduleOutputBlock)
     public var setModuleOutput: ((AnyObject?) -> Void)?
-
+    
+    @objc(initWithView:input:output:)
+    public init(view: UIViewController, input: AnyObject, output: ((AnyObject?) -> Void)?) {
+        self.view = view
+        self.inputObjc = input
+        self.setModuleOutput = output
+    }
 }
 
 public class Module<I: Any, O: Any>: NSObject, RFModule, ModuleHandling {
@@ -81,7 +87,7 @@ public class Module<I: Any, O: Any>: NSObject, RFModule, ModuleHandling {
         }
     }
     
-    public init(view: UIViewController, input: I, setModuleOutput: ((O?) -> Void)?) {
+    public init(view: UIViewController, input: I?, setModuleOutput: ((O?) -> Void)?) {
         super.init()
         self.view = view
         self.input = input
@@ -95,5 +101,15 @@ public class Module<I: Any, O: Any>: NSObject, RFModule, ModuleHandling {
         set {
             self.view?.rf_appearance = newValue
         }
+    }
+}
+
+public extension Module {
+    convenience init(view: UIViewController, input: I) {
+        self.init(view: view, input: input, setModuleOutput: nil)
+    }
+
+    convenience init(view: UIViewController) {
+        self.init(view: view, input: view as? I, setModuleOutput: nil)
     }
 }

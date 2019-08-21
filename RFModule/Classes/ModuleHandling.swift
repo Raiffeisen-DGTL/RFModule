@@ -21,7 +21,7 @@ public protocol RFModuleHandling: NSObjectProtocol {
 }
 
 public extension RFModuleHandling {
-    public var input: AnyObject? { get { return inputObjc } set { inputObjc = newValue} }
+    var input: AnyObject? { get { return inputObjc } set { inputObjc = newValue} }
 }
 
 

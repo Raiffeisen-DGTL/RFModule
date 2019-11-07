@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RFModule'
-  s.version          = '0.2.0'
+  s.version          = `make get_version`
   s.summary          = 'RFModule framework that helps to build independent modules'
 
   s.description      = <<-DESC
@@ -21,7 +21,10 @@ more info - https://habr.com/ru/company/raiffeisenbank/blog/448206/
   s.homepage         = 'https://www.raiffeisen.ru/'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Golofaev' => 'Roman.GOLOFAEV@raiffeisen.ru' }
-  s.source           = { :git => 'https://bitbucket.raiffeisen.ru/scm/rios/rfmodule.git', :tag => s.version.to_s }
+  s.source           = {
+      :git => `make get_source`,
+      :tag => s.version.to_s
+  }
 
   s.ios.deployment_target = '9.3'
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
@@ -29,6 +32,5 @@ more info - https://habr.com/ru/company/raiffeisenbank/blog/448206/
 
   s.source_files = 'RFModule/Classes/**/*'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
 end
